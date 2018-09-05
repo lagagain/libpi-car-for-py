@@ -24,20 +24,23 @@ def pin_setup():
     for name, pin in tracking_pin.iteritems():
         GPIO.setup(pin, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
-def mycallback(channel):                                                 
-    print str(channel) + ' triggered @ ' +  str(time.ctime())
+def mycallback(channel):
+    print(str(channel) + ' triggered @ ' +  str(time.ctime()))
 
-try:
-    pin_setup()
 
-    for name, pin in tracking_pin.iteritems():
-        GPIO.add_event_detect(pin, GPIO.RISING, callback=mycallback, bouncetime=WAIT_TIME)
 
-    while True:
-        time.sleep(10)
+if __name__ == "__main__":
+     try:
+         pin_setup()
 
-except KeyboardInterrupt:
-    print "Exception: KeyboardInterrupt"
+         for name, pin in tracking_pin.iteritems():
+             GPIO.add_event_detect(pin, GPIO.RISING, callback=mycallback, bouncetime=WAIT_TIME)
 
-finally:
-    GPIO.cleanup()          
+         while True:
+             time.sleep(10)
+
+     except KeyboardInterrupt:
+         print("Exception: KeyboardInterrupt")
+
+     finally:
+         GPIO.cleanup()

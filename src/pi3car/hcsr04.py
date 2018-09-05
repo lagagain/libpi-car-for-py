@@ -49,22 +49,24 @@ def measure_distance(trigger_pin, echo_pin) :
 
     return round(d*100, 2)
 
+def cleanup():
+    GPIO.cleanup()
 
+if __name__ == "__main__":
+    try :
+        pin_setup()
 
-try :
-    pin_setup()
+        while True:
+            print("============================")
+            print('L:', measure_distance(hcsr04_trigger_pin['L'], hcsr04_echo_pin['L']))
+            print('F:', measure_distance(hcsr04_trigger_pin['F'], hcsr04_echo_pin['F']))
+            print('R:', measure_distance(hcsr04_trigger_pin['R'], hcsr04_echo_pin['R']))
+            print('B:', measure_distance(hcsr04_trigger_pin['B'], hcsr04_echo_pin['B']))
 
-    while True:
-        print "============================"
-        print 'L:', measure_distance(hcsr04_trigger_pin['L'], hcsr04_echo_pin['L'])
-        print 'F:', measure_distance(hcsr04_trigger_pin['F'], hcsr04_echo_pin['F'])
-        print 'R:', measure_distance(hcsr04_trigger_pin['R'], hcsr04_echo_pin['R'])
-        print 'B:', measure_distance(hcsr04_trigger_pin['B'], hcsr04_echo_pin['B'])
+            time.sleep(1)
 
-        time.sleep(1)
+    except KeyboardInterrupt:
+        print("Exception: KeyboardInterrupt")
 
-except KeyboardInterrupt:
-    print "Exception: KeyboardInterrupt"
-
-finally:
-    GPIO.cleanup()          
+    finally:
+        GPIO.cleanup()

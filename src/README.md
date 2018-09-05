@@ -27,5 +27,3 @@ see the preview window, and press 'q' to exit
 
 
 
-# Note
-no commit include SitDownShutUp.mp3 and wave.mp3. and I down know what are their right.

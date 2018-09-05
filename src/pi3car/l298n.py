@@ -77,7 +77,7 @@ def turnLeft():
 
 if __name__ == "__main__":
 
-    print "Press 'q' to quit..."
+    print("Press 'q' to quit...")
 
     while True:
         ch = readchar.readkey()
@@ -95,7 +95,7 @@ if __name__ == "__main__":
             turnLeft()
 
         elif ch == 'q':
-            print "\nQuit"
+            print("\nQuit")
             GPIO.cleanup()
             quit()
 

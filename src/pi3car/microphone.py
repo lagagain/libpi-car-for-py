@@ -15,25 +15,25 @@
 
 import speech_recognition as sr
 
-r=sr.Recognizer() 
+r=sr.Recognizer()
 with sr.Microphone() as source:
-    print("Please wait. Calibrating microphone...") 
-    r.adjust_for_ambient_noise(source, duration=5) 
+    print("Please wait. Calibrating microphone...")
+    r.adjust_for_ambient_noise(source, duration=5)
     print('Say something>>> ')
     audio=r.listen(source)
 
 try:
     print('Google Speech Recognition thinks you said:')
     sent = r.recognize_google(audio, language="zh-TW")
-   
-    print "\nUnicode sentence"
-    print "==================================="
-    print type(sent), len(sent), sent
 
-    print "\nUTF-8 sentence"
-    print "==================================="
+    print("\nUnicode sentence")
+    print("===================================")
+    print(type(sent), len(sent), sent)
+
+    print("\nUTF-8 sentence")
+    print("===================================")
     token = sent.encode('utf-8')
-    print type(token), len(token), token
+    print(type(token), len(token), token)
 except sr.UnknownValueError:
     print('Google Speech Recognition could not understand audio')
 except sr.RequestError as e:
